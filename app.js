@@ -24,7 +24,7 @@ createList(toDos);
 addBtn.addEventListener("click", () => {
   let obj = {};
   obj.title = toDoInput.value;
-  obj.id = toDos.length > 0 ? toDos[toDos.length - 1].id + 1 : 1; // Ensure the ID is assigned properly even if the list is empty
+  obj.id = toDos.length > 0 ? toDos[toDos.length - 1].id + 1 : 1;
 
   toDos.push(obj);
 
@@ -44,8 +44,8 @@ azBtn.addEventListener("click", () => {
 });
 
 deleteBtn.addEventListener("click", () => {
-  toDos = []; 
-  list.innerHTML = ""; 
+  toDos = [];
+  list.innerHTML = "";
   console.log("All tasks deleted", toDos);
 });
 
@@ -53,22 +53,24 @@ function createList(arr) {
   arr.forEach((toDo) => {
     const li = document.createElement("li");
     const button = document.createElement("button");
+    const editIcon = document.createElement("i");
 
     li.innerText = toDo.title;
+
     button.innerText = "Delete";
 
-    button.className = "btn btn-danger ms-2";
-    li.className = "m-2";
+    button.className = "btn";
 
     button.addEventListener("click", (e) => {
       console.log(e.target, toDo.id);
 
-      toDos = toDos.filter((elem) => elem.id !== toDo.id); // Update `toDos` globally, not just locally
+      toDos = toDos.filter((elem) => elem.id !== toDo.id);
 
       list.innerHTML = "";
       createList(toDos);
     });
 
+    li.appendChild(editIcon);
     li.appendChild(button);
     list.appendChild(li);
   });
